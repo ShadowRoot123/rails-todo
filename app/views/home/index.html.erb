@@ -1,0 +1,23 @@
+        <% if user_signed_in? %>
+            <span>Hello, <%= current_user.username.presence || "User" %></span>
+<% end %>
+      <h1 class="text-3xl font-semibold mb-4"><%= greeting %> Welcome to My Rails App!</h1>
+
+      <% if session[:last_visited].present? %>
+        <p class="text-sm text-gray-500">Last visited: <%= formatted_time_ago(session[:last_visited]) %></p>
+      <% end %>
+
+      <% if session[:total_visit_count].present? %>
+        <p class="text-sm text-gray-500">Total visits: <%= session[:total_visit_count] %></p>
+      <% end %>
+
+      <% if session[:page_visits].present? && session[:page_visits][request.path].present? %>
+        <p class="text-sm text-gray-500">Visits to this page: <%= session[:page_visits][request.path] %></p>
+      <% end %>
+
+      <% if notice %>
+        <p class="mt-4 p-2 bg-green-100 text-green-800 rounded"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="mt-4 p-2 bg-red-100 text-red-800 rounded"><%= alert %></p>
+      <% end %>
